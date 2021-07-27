@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Agendea</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile">Profile</string>
+    <string name="finance">Finance</string>
+    <string name="calendar">Calendar</string>
+    <string name="today">Today</string>
+    <string name="weekly">weekly</string>
+    <string name="monthly">monthly</string>
 </resources>
