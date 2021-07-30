@@ -2,7 +2,8 @@ package com.cagataysencan.agendea.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.Menu
+import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.cagataysencan.agendea.R
 import com.cagataysencan.agendea.viewModels.mainViewModel
@@ -18,18 +19,35 @@ class MainActivity : AppCompatActivity() {
         viewModelMainActivity.firstTimeControl(this)
         val calendarFragment = calendarFragment()
         val financeFragment = financeFragment()
-        val profileFragment = profileFragment()
+        val noteFragment = noteFragment()
+
 
         viewModelMainActivity.fragmentChanger(calendarFragment,this)
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.calendar ->  viewModelMainActivity.fragmentChanger(calendarFragment,this)
                 R.id.finance ->  viewModelMainActivity.fragmentChanger(financeFragment,this)
-                R.id.profile ->  viewModelMainActivity.fragmentChanger(profileFragment,this)
+                R.id.profile ->  viewModelMainActivity.fragmentChanger(noteFragment,this)
             }
             true
         }
 
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val menuInflator = menuInflater
+        menuInflator.inflate(R.menu.create_note_menu,menu)
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val addNoteFragment = addNoteFragment()
+
+        if(item.itemId == R.id.newNote) {
+            viewModelMainActivity.fragmentChanger(addNoteFragment,this)
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 

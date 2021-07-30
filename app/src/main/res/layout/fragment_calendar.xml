@@ -9,13 +9,13 @@
     <FrameLayout
         android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
-        android:layout_height="489dp"
+        android:layout_height="match_parent"
 
         android:layout_below="@+id/top_navigation"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="2dp" />
 

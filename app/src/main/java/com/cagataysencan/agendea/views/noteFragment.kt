@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.cagataysencan.agendea.R
 
 
-class profileFragment : Fragment() {
+class noteFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +21,7 @@ class profileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_note, container, false)
     }
 
 
