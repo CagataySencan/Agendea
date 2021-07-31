@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cagataysencan.agendea.R
+import com.cagataysencan.agendea.data.userDatabase
+import com.cagataysencan.agendea.models.noteInfo
 import com.cagataysencan.agendea.viewModels.recyclerAdapter
 import kotlinx.android.synthetic.main.fragment_today.*
 
@@ -30,10 +32,17 @@ class todayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var database: userDatabase = userDatabase.getData(this.requireContext())
+        var list : List<noteInfo> = database.userDao().readNote()
+
+
         val layoutManager = LinearLayoutManager(context?.applicationContext!!)
         recycler_view.layoutManager = layoutManager
-        recyclerAdapter = recyclerAdapter("14:00","31 zamanı")
+        recyclerAdapter = recyclerAdapter(list,this.requireContext())
         recycler_view.adapter = recyclerAdapter
+
+
+
     }
 
 

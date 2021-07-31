@@ -3,22 +3,20 @@ package com.cagataysencan.agendea.views
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.icu.util.LocaleData
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
-import android.widget.TimePicker
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import com.cagataysencan.agendea.R
+import com.cagataysencan.agendea.data.userDatabase
+import com.cagataysencan.agendea.models.noteInfo
 import com.cagataysencan.agendea.viewModels.addNoteViewModel
 import kotlinx.android.synthetic.main.fragment_add_note.*
 import java.text.SimpleDateFormat
-import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -28,8 +26,10 @@ import java.util.*
 class addNoteFragment : Fragment() {
     private lateinit var addNoteView : addNoteViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
     }
 
@@ -56,13 +56,12 @@ class addNoteFragment : Fragment() {
             var localDateTime = LocalDateTime.ofInstant(calendar.time.toInstant(), ZoneId.systemDefault())
             var localDate = localDateTime.toLocalDate()
 
-
-
         }
         val pickTime = TimePickerDialog.OnTimeSetListener { view, hour, minute ->
             calendar2.set(Calendar.HOUR_OF_DAY,hour)
             calendar2.set(Calendar.MINUTE,minute)
             update2(calendar2)
+            var format2 = update2(calendar2)
         }
 
         datePicker.setOnClickListener {
@@ -72,16 +71,23 @@ class addNoteFragment : Fragment() {
 
         }
         timePicker.setOnClickListener {
-            TimePickerDialog(this.requireContext(),pickTime,calendar2.get(Calendar.HOUR_OF_DAY),calendar2.get(Calendar.MINUTE),true).show()
+            TimePickerDialog(this.requireContext(),pickTime,calendar2.get(Calendar.HOUR_OF_DAY),calendar2.get(Calendar.MINUTE),false).show()
         }
 
         saveNote.setOnClickListener{
             var localDateTime = LocalDateTime.ofInstant(calendar.time.toInstant(), ZoneId.systemDefault())
             var localDate = localDateTime.toLocalDate()
+            var format2 = update2(calendar2)
+            if(localDate == LocalDate.now()){
+                var note = noteInfo(UUID.randomUUID().toString(),localDate.toString(),calendar2.time.hours,format2,noteText.text.toString())
+                var database : userDatabase = userDatabase.getData(requireContext())
+                database.userDao().addNote(note)
+
+            }
+
 
 
         }
-
 
 
 
@@ -91,14 +97,11 @@ class addNoteFragment : Fragment() {
     fun update(calendar : Calendar)  {
         val format = SimpleDateFormat("dd-MM-yyyy",Locale.US).format(calendar.time)
         showDate.text = format
-
-
-
-
     }
-    fun update2(calendar : Calendar)  {
+    fun update2(calendar : Calendar) : String  {
         val format2 = SimpleDateFormat("HH:mm",Locale.US).format(calendar.time)
         showDate2.text = format2
+        return format2
 
     }
 
