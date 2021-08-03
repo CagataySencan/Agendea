@@ -45,65 +45,34 @@ class addNoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addNoteView = ViewModelProvider(this).get(addNoteViewModel::class.java)
+
         val calendar = Calendar.getInstance()
         val calendar2 = Calendar.getInstance()
-        val pickDate = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-            calendar.set(Calendar.YEAR,year)
-            calendar.set(Calendar.MONTH,month)
-            calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth)
 
-            update(calendar)
-            var localDateTime = LocalDateTime.ofInstant(calendar.time.toInstant(), ZoneId.systemDefault())
-            var localDate = localDateTime.toLocalDate()
+        addNoteView.pickDate(showDate,calendar)
+        addNoteView.pickTime(showDate2,calendar2)
 
-        }
-        val pickTime = TimePickerDialog.OnTimeSetListener { view, hour, minute ->
-            calendar2.set(Calendar.HOUR_OF_DAY,hour)
-            calendar2.set(Calendar.MINUTE,minute)
-            update2(calendar2)
-            var format2 = update2(calendar2)
-        }
+        val pickDate = addNoteView.pickDate(showDate,calendar)
+        val pickTime = addNoteView.pickTime(showDate2,calendar2)
+
 
         datePicker.setOnClickListener {
-            DatePickerDialog(this.requireContext(),pickDate,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show()
-
-
-
+           addNoteView.pickDateListener(this.requireContext(),pickDate,calendar)
         }
         timePicker.setOnClickListener {
-            TimePickerDialog(this.requireContext(),pickTime,calendar2.get(Calendar.HOUR_OF_DAY),calendar2.get(Calendar.MINUTE),false).show()
+            addNoteView.pickTimeListener(this.requireContext(),pickTime,calendar2)
         }
 
         saveNote.setOnClickListener{
-            var localDateTime = LocalDateTime.ofInstant(calendar.time.toInstant(), ZoneId.systemDefault())
-            var localDate = localDateTime.toLocalDate()
-            var format2 = update2(calendar2)
-            if(localDate == LocalDate.now()){
-                var note = noteInfo(UUID.randomUUID().toString(),localDate.toString(),calendar2.time.hours,format2,noteText.text.toString())
-                var database : userDatabase = userDatabase.getData(requireContext())
-                database.userDao().addNote(note)
-
-            }
-
-
+            addNoteView.noteSaver(this.requireContext(),noteText,showDate2,calendar,calendar2)
 
         }
 
-
-
     }
 
-    @SuppressLint("SetTextI18n")
-    fun update(calendar : Calendar)  {
-        val format = SimpleDateFormat("dd-MM-yyyy",Locale.US).format(calendar.time)
-        showDate.text = format
-    }
-    fun update2(calendar : Calendar) : String  {
-        val format2 = SimpleDateFormat("HH:mm",Locale.US).format(calendar.time)
-        showDate2.text = format2
-        return format2
 
-    }
+
+
 
 
 }

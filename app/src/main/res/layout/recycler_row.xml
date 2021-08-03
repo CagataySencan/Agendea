@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="93dp"
+        android:layout_width="356dp"
+        android:layout_height="121dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,14 +40,14 @@
 
             <ImageButton
                 android:id="@+id/deleteButton"
-                android:layout_width="207dp"
-                android:layout_height="42dp"
+                android:layout_width="178dp"
+                android:layout_height="match_parent"
                 app:srcCompat="@drawable/delete" />
 
             <ImageButton
                 android:id="@+id/updateButton"
-                android:layout_width="207dp"
-                android:layout_height="42dp"
+                android:layout_width="178dp"
+                android:layout_height="match_parent"
                 app:srcCompat="@drawable/update" />
         </LinearLayout>
 
