@@ -4,15 +4,13 @@ import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
-import android.text.TextUtils.replace
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.AndroidViewModel
 import com.cagataysencan.agendea.R
 import com.cagataysencan.agendea.data.userDatabase
-import com.cagataysencan.agendea.models.userInfo
+import com.cagataysencan.agendea.data.userInfo
 import com.cagataysencan.agendea.views.MainActivity
 import com.cagataysencan.agendea.views.fragmentBase
 

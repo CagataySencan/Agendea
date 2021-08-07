@@ -1,8 +1,6 @@
 package com.cagataysencan.agendea.data
 
 import androidx.room.*
-import com.cagataysencan.agendea.models.noteInfo
-import com.cagataysencan.agendea.models.userInfo
 
 @Dao
 interface userDao {

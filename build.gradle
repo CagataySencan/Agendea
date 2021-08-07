@@ -20,9 +20,11 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }// Warning: this repository is going to shut down soon
     }
-}
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

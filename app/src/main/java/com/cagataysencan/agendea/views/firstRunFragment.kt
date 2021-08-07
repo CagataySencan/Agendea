@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.cagataysencan.agendea.R
-import com.cagataysencan.agendea.models.userInfo
+import com.cagataysencan.agendea.data.userInfo
 import com.cagataysencan.agendea.viewModels.firstRunViewModel
 import kotlinx.android.synthetic.main.fragment_first_run.*
 

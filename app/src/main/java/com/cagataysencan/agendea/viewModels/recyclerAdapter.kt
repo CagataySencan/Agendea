@@ -4,15 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Database
 import com.cagataysencan.agendea.R
 import com.cagataysencan.agendea.data.userDatabase
-import com.cagataysencan.agendea.models.noteInfo
-import kotlinx.android.synthetic.main.fragment_today.view.*
+import com.cagataysencan.agendea.data.noteInfo
 import kotlinx.android.synthetic.main.recycler_row.view.*
-import java.util.zip.Inflater
 
 class recyclerAdapter(val list : List<noteInfo>, val context: Context) : RecyclerView.Adapter<recyclerAdapter.viewHolder>() {
     class viewHolder(view : View) : RecyclerView.ViewHolder(view)

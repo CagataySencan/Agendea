@@ -1,8 +1,5 @@
 package com.cagataysencan.agendea.views
 
-import android.annotation.SuppressLint
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,14 +9,8 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import com.cagataysencan.agendea.R
-import com.cagataysencan.agendea.data.userDatabase
-import com.cagataysencan.agendea.models.noteInfo
 import com.cagataysencan.agendea.viewModels.addNoteViewModel
 import kotlinx.android.synthetic.main.fragment_add_note.*
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.ZoneId
 import java.util.*
 
 

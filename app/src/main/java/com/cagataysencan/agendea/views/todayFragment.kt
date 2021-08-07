@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cagataysencan.agendea.R
 import com.cagataysencan.agendea.data.userDatabase
-import com.cagataysencan.agendea.models.noteInfo
+import com.cagataysencan.agendea.data.noteInfo
 import com.cagataysencan.agendea.viewModels.recyclerAdapter
 import kotlinx.android.synthetic.main.fragment_today.*
 

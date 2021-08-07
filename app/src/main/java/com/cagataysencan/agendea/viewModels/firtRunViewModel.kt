@@ -6,7 +6,7 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import androidx.lifecycle.AndroidViewModel
 import com.cagataysencan.agendea.data.userDatabase
-import com.cagataysencan.agendea.models.userInfo
+import com.cagataysencan.agendea.data.userInfo
 import com.cagataysencan.agendea.views.MainActivity
 
 
