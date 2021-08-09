@@ -16,7 +16,7 @@ interface userDao {
     @Query("SELECT * FROM userInfo  ORDER BY id ")
     fun readData() :List<userInfo>
 
-    @Query("SELECT * FROM notes  ORDER BY time ")
+    @Query("SELECT * FROM notesToday  ORDER BY time ")
     fun readNote() : List<noteInfo>
 
 

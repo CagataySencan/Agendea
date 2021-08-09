@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="120dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="356dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/cryptoImage"
+                android:layout_width="103dp"
+                android:layout_height="97dp"
+                app:srcCompat="@drawable/finance" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="252dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/coinPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Coin Price" />
+
+            <TextView
+                android:id="@+id/todayHigh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 24H High :" />
+
+            <TextView
+                android:id="@+id/todayLow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 24H Low :" />
+
+            <TextView
+                android:id="@+id/coinVolume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Coin Volume :" />
+
+            <TextView
+                android:id="@+id/usdtVolume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" USDT Volume :" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

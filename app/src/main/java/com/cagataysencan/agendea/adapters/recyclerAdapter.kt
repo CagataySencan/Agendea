@@ -1,4 +1,4 @@
-package com.cagataysencan.agendea.viewModels
+package com.cagataysencan.agendea.adapters
 
 import android.content.Context
 import android.view.LayoutInflater

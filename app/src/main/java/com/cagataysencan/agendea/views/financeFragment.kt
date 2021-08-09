@@ -1,7 +1,6 @@
 package com.cagataysencan.agendea.views
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cagataysencan.agendea.R
 import com.cagataysencan.agendea.apiService.repo
-import com.cagataysencan.agendea.data.cryptoModel
-import com.cagataysencan.agendea.viewModels.financeRecyclerAdapter
+import com.cagataysencan.agendea.adapters.financeRecyclerAdapter
 import com.cagataysencan.agendea.viewModels.financeViewModel
 import com.cagataysencan.agendea.viewModels.financeViewModelFactory
 import kotlinx.android.synthetic.main.fragment_finance.*

@@ -47,6 +47,9 @@ class MainActivity : AppCompatActivity() {
             viewModelMainActivity.fragmentChanger(addNoteFragment,this)
 
         }
+        if(item.itemId == R.id.settings) {
+            viewModelMainActivity.fragmentChanger(settingsFragment(),this)
+        }
         return super.onOptionsItemSelected(item)
     }
 

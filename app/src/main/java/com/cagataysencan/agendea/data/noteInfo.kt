@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 
-@Entity(tableName = "notes")
+@Entity(tableName = "notesToday")
 data class noteInfo(
 
     @PrimaryKey(autoGenerate =false)
