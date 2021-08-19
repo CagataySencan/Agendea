@@ -40,15 +40,10 @@
 
             <ImageButton
                 android:id="@+id/deleteButton"
-                android:layout_width="178dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/delete" />
 
-            <ImageButton
-                android:id="@+id/updateButton"
-                android:layout_width="178dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/update" />
         </LinearLayout>
 
     </LinearLayout>

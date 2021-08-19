@@ -1,5 +1,6 @@
 package com.cagataysencan.agendea.views
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -56,6 +57,8 @@ class addNoteFragment : Fragment() {
 
         saveNote.setOnClickListener{
             addNoteView.noteSaver(this.requireContext(),noteText,showDate2,calendar,calendar2)
+            addNoteView.fragmentChanger(calendarFragment(),this.requireContext())
+
 
         }
 

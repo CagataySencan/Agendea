@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cagataysencan.agendea.R
 import com.cagataysencan.agendea.data.userDatabase
@@ -33,13 +35,15 @@ class todayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var database: userDatabase = userDatabase.getData(this.requireContext())
-        var list : List<noteInfo> = database.userDao().readNote()
+        var list : LiveData<List<noteInfo>> = database.userDao().readNote()
 
 
         val layoutManager = LinearLayoutManager(context?.applicationContext!!)
         recycler_view.layoutManager = layoutManager
-        recyclerAdapter = recyclerAdapter(list,this.requireContext())
-        recycler_view.adapter = recyclerAdapter
+        list.observe(viewLifecycleOwner, Observer {
+            recyclerAdapter = recyclerAdapter(it,this.requireContext())
+            recycler_view.adapter = recyclerAdapter
+        })
 
 
 

@@ -25,6 +25,7 @@ class recyclerAdapter(val list : List<noteInfo>, val context: Context) : Recycle
         holder.itemView.date.text = list[position].exactTime
         holder.itemView.note.text = list[position].note
         holder.itemView.deleteButton.setOnClickListener {
+
             database.userDao().deleteNote(list[position])
         }
 

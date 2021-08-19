@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cagataysencan.agendea.R
 import com.cagataysencan.agendea.adapters.weeklyRecyclerAdapter
 import com.cagataysencan.agendea.data.noteInfo
+import com.cagataysencan.agendea.data.userDatabase
 import com.cagataysencan.agendea.data.weeklyNote
 import com.cagataysencan.agendea.viewModels.weeklyFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_weekly.*
@@ -19,6 +20,8 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.time.temporal.ChronoField
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class weeklyFragment : Fragment() {
@@ -46,19 +49,32 @@ class weeklyFragment : Fragment() {
 
 
         weeklyView = ViewModelProvider(this).get(weeklyFragmentViewModel::class.java)
-        val currentDate = LocalDate.now()
-        var i = -1
+        var database : userDatabase = userDatabase.getData(this.requireContext())
+
+        var i = 1
         var emptyList = ArrayList<weeklyNote>()
 
-        while(i != 6) {
+        while(i != 8) {
+            if(database.userDao().checkTable() < 7 ) {
+                weeklyView.printWeek(this.requireContext(),i,emptyList,i,"")
+                weeklyView.weeklyNotes.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                    weeklyAdapter = weeklyRecyclerAdapter(it,this.requireContext())
+                    recyclerViewWeekly.adapter = weeklyAdapter
 
-            val dayCount = currentDate.dayOfWeek.getLong(ChronoField.DAY_OF_WEEK) + i
-            val day = currentDate.plusDays(dayCount).dayOfWeek
-            val startOfWeek =currentDate.plusDays(dayCount).format(DateTimeFormatter.ofPattern("dd-MM-yy"))
-            emptyList.add(weeklyNote(startOfWeek,day.toString(),"asldkmas"))
-            weeklyAdapter = weeklyRecyclerAdapter(emptyList)
-            recyclerViewWeekly.adapter = weeklyAdapter
-            i++
+                })
+                i++
+
+            }
+            else {
+                weeklyView.weeklyNotes.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                    weeklyAdapter = weeklyRecyclerAdapter(it,this.requireContext())
+                    recyclerViewWeekly.adapter = weeklyAdapter
+
+                })
+                i++
+
+            }
+
 
         }
 

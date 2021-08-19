@@ -8,16 +8,28 @@ import android.os.Build
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
+import com.cagataysencan.agendea.R
 import com.cagataysencan.agendea.data.userDatabase
 import com.cagataysencan.agendea.data.noteInfo
+import com.cagataysencan.agendea.data.weeklyNote
+import com.cagataysencan.agendea.views.MainActivity
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoField
 import java.util.*
 
 class addNoteViewModel(application: Application) : AndroidViewModel(application) {
+    fun fragmentChanger(fragment: Fragment, context: Context)   {
+        var transaction = (context as MainActivity).supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frameLayout,fragment)
+        transaction.commit()
+    }
+
      fun update(showDate: TextView, calendar: Calendar) {
         val format = SimpleDateFormat("dd-MM-yyyy", Locale.US).format(calendar.time)
         showDate.text = format
@@ -78,10 +90,41 @@ class addNoteViewModel(application: Application) : AndroidViewModel(application)
         var localDateTime = LocalDateTime.ofInstant(calendar.time.toInstant(), ZoneId.systemDefault())
         var localDate = localDateTime.toLocalDate()
         var format2 = update2(showDate2,calendar2)
+        var database : userDatabase = userDatabase.getData(context)
         if(localDate == LocalDate.now()){
             var note = noteInfo(UUID.randomUUID().toString(),localDate.toString(),calendar2.time.hours,format2,noteText.text.toString())
-            var database : userDatabase = userDatabase.getData(context)
+
             database.userDao().addNote(note)
+
+        }
+         if(localDate == LocalDate.now() || localDate.format(DateTimeFormatter.ofPattern("dd-MM-yy")) in database.userDao().getDates()) {
+            var i = 0
+            var j = 1
+
+            while(i <= 6) {
+                while (j <= 7){
+                    val dayCount = -localDate.dayOfWeek.getLong(ChronoField.DAY_OF_WEEK)  + j
+                    val day = localDate.plusDays(dayCount).dayOfWeek.toString()
+                    val startOfWeek =localDate.plusDays(dayCount).format(DateTimeFormatter.ofPattern("dd-MM-yy"))
+
+                    if(localDate.format(DateTimeFormatter.ofPattern("dd-MM-yy")) == database.userDao().getDates()[i] ) {
+                        var weekObject = weeklyNote(j,startOfWeek,day,calendar2.time.hours,format2," ${noteText.text.toString()}  \n ${database.userDao().getTime()[i]} \n ${database.userDao().getNote()[i]}")
+                        database.userDao().updateWeekly(weekObject)
+                        i++
+                        j++
+
+                    }
+
+
+                    i++
+                    j++
+                }
+
+
+            }
+
+
+
 
         }
     }
