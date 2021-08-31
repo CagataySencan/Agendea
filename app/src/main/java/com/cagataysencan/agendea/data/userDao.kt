@@ -9,13 +9,13 @@ interface userDao {
     fun addUser(user : userInfo)
 
     @Insert()
-    fun addNote(note : noteInfo)
+    fun addNote(today : todayInfo)
 
     @Insert
     fun addWeeklyNote(note : weeklyNote)
 
     @Delete()
-    fun deleteNote(model: noteInfo)
+    fun deleteNote(model: todayInfo)
 
     @Update()
     fun deleteWeeklyNote(model : weeklyNote)
@@ -28,7 +28,7 @@ interface userDao {
     fun readData() :List<userInfo>
 
     @Query("SELECT * FROM notesToday  ORDER BY time ")
-    fun readNote() : LiveData<List<noteInfo>>
+    fun readNote() : LiveData<List<todayInfo>>
 
     @Query("SELECT * FROM notesWeek ORDER BY id")
     fun readWeeklyNote() : LiveData<List<weeklyNote>>
@@ -45,6 +45,10 @@ interface userDao {
 
     @Query("SELECT time FROM notesWeek ")
     fun getTime() : List<String>
+
+    @Query("SELECT * FROM notesMonth ORDER BY id")
+    fun readMonthlyNote() : LiveData<List<monthlyNote>>
+
 
 
 

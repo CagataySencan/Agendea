@@ -8,7 +8,7 @@ import java.util.*
 
 
 @Entity(tableName = "notesToday")
-data class noteInfo(
+data class todayInfo(
 
     @PrimaryKey(autoGenerate =false)
     @ColumnInfo(name = "id")

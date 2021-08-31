@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
 import com.cagataysencan.agendea.R
 import com.cagataysencan.agendea.data.userDatabase
-import com.cagataysencan.agendea.data.noteInfo
+import com.cagataysencan.agendea.data.todayInfo
 import com.cagataysencan.agendea.data.weeklyNote
 import com.cagataysencan.agendea.views.MainActivity
 import java.text.SimpleDateFormat
@@ -92,7 +92,7 @@ class addNoteViewModel(application: Application) : AndroidViewModel(application)
         var format2 = update2(showDate2,calendar2)
         var database : userDatabase = userDatabase.getData(context)
         if(localDate == LocalDate.now()){
-            var note = noteInfo(UUID.randomUUID().toString(),localDate.toString(),calendar2.time.hours,format2,noteText.text.toString())
+            var note = todayInfo(UUID.randomUUID().toString(),localDate.toString(),calendar2.time.hours,format2,noteText.text.toString())
 
             database.userDao().addNote(note)
 

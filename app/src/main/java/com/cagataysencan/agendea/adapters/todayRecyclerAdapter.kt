@@ -7,16 +7,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cagataysencan.agendea.R
 import com.cagataysencan.agendea.data.userDatabase
-import com.cagataysencan.agendea.data.noteInfo
-import kotlinx.android.synthetic.main.recycler_row.view.*
+import com.cagataysencan.agendea.data.todayInfo
+import kotlinx.android.synthetic.main.recycler_row_today.view.*
+import kotlinx.android.synthetic.main.recycler_row_today.view.*
 
-class recyclerAdapter(val list : List<noteInfo>, val context: Context) : RecyclerView.Adapter<recyclerAdapter.viewHolder>() {
+class todayRecyclerAdapter(val list : List<todayInfo>, val context: Context) : RecyclerView.Adapter<todayRecyclerAdapter.viewHolder>() {
     class viewHolder(view : View) : RecyclerView.ViewHolder(view)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
         val inflator = LayoutInflater.from(parent.context)
-        val view = inflator.inflate(R.layout.recycler_row,parent,false)
+        val view = inflator.inflate(R.layout.recycler_row_today,parent,false)
         return viewHolder(view)
     }
 

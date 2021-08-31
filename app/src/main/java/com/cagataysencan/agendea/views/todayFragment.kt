@@ -10,13 +10,13 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cagataysencan.agendea.R
 import com.cagataysencan.agendea.data.userDatabase
-import com.cagataysencan.agendea.data.noteInfo
-import com.cagataysencan.agendea.adapters.recyclerAdapter
+import com.cagataysencan.agendea.data.todayInfo
+import com.cagataysencan.agendea.adapters.todayRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_today.*
 
 
 class todayFragment : Fragment() {
-    lateinit var recyclerAdapter : recyclerAdapter
+    lateinit var todayRecyclerAdapter : todayRecyclerAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,14 +35,14 @@ class todayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var database: userDatabase = userDatabase.getData(this.requireContext())
-        var list : LiveData<List<noteInfo>> = database.userDao().readNote()
+        var list : LiveData<List<todayInfo>> = database.userDao().readNote()
 
 
         val layoutManager = LinearLayoutManager(context?.applicationContext!!)
         recycler_view.layoutManager = layoutManager
         list.observe(viewLifecycleOwner, Observer {
-            recyclerAdapter = recyclerAdapter(it,this.requireContext())
-            recycler_view.adapter = recyclerAdapter
+            todayRecyclerAdapter = todayRecyclerAdapter(it,this.requireContext())
+            recycler_view.adapter = todayRecyclerAdapter
         })
 
 

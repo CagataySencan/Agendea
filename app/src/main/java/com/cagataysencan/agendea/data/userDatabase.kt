@@ -5,7 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [userInfo::class, noteInfo::class,weeklyNote::class],version = 2,exportSchema = false)
+@Database(entities = [userInfo::class, todayInfo::class,weeklyNote::class,monthlyNote::class],version = 3,exportSchema = false)
+
 
 abstract class userDatabase : RoomDatabase() {
 
@@ -14,6 +15,7 @@ abstract class userDatabase : RoomDatabase() {
     companion object{
         @Volatile
         private var INSTANCE : userDatabase? = null
+
 
 
         fun getData(context: Context): userDatabase {
@@ -29,7 +31,7 @@ abstract class userDatabase : RoomDatabase() {
                     userDatabase::class.java,
                     "userInfo"
 
-                ).allowMainThreadQueries().build()
+                ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 return instance
             }
